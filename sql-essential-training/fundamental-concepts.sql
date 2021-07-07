@@ -298,3 +298,111 @@ from test;
     -- Insert values into the table, do not include the id
     -- When you display the table you will see each row has a unique id which is a number in sequential order starting a 1
     
+-- Filtering Data
+
+select *
+from Country;
+    -- You can start by selecting all the data from a table unfiltered
+    
+select Name, Continent, Population
+from Country;
+    -- Use the select statement to filter which features you want in the table
+    
+select Name, Continent, Population
+from Country
+where Population < 100000;
+    -- Use a where clause to futher filter the data to only show observations where a specific condition is satisfied
+    
+select Name, Continent, Population
+from Country
+where Population < 100000
+order by Population desc;
+    -- You can use an order by clause to arrange the data
+        -- In this case using desc makes the order go from largest to smallest
+        
+select Name, Continent, Population
+from Country
+where Population < 100000 or Population is null
+order by Population desc;
+    -- You can use an or statement to add another filter
+    -- or means either requirement may be true
+    
+select Name, Continent, Population
+from Country
+where Population < 100000 and Continent = 'Oceania'
+order by Population desc;
+    -- You can use and statement to also add another condition
+    -- and means both conditions must be true
+    
+select Name, Continent, Population
+from Country
+where Name like '%island%'
+order by Population desc;
+    -- You may use like clause to filter for strings that have similar features to the condition
+    -- In this case our query would find any observation where the name field contains the word island
+    
+select Name, Continent, Population
+from Country
+where Name like '%island'
+order by Population desc;
+    -- If you remove the wildcard at the end you will only get results taht end in the word island
+    -- If you tried to remove the first wildcard you would get results that start with the word island
+    
+select Name, Continent, Population
+from Country
+where Name like 'a%'
+order by Population desc;
+    -- This query would return any observations that start with the letter A
+    
+select Name, Continent, Population
+from Country
+where Name like '_a%'
+order by Population desc;
+    -- This query would return any result where the second letter of the name is the letter A
+    
+select Name, Continent, Population
+from Country
+where Continent in ('Europe', 'Asia')
+order by Population desc;
+    -- You can pass in a list and use the in clause to filter your results
+    -- This query would return all country in Europe AND Asia
+    
+-- Removing Duplicates 
+
+select Continent
+from Country;
+    -- If you run this query you would notice a lot of duplicates
+    
+select distinct Continent
+from Country;
+    -- If you add the distinct clause to your select statement it will only list each unique observation
+    
+select distinct Continent, Region
+from Country;
+    -- If you list more than one feature in the distinct statement the results will be each unique combination of the features that exist
+    
+-- Ordering Output
+
+select Name
+from Country
+order by Name;
+    -- Selecting a feature won't automatically put the list in order, the results will be in whatever order the rows are in the table
+    -- If you wish for the results to be ordered you must explicitly state it and by which feature
+    -- Default order is asc, which means alpahbetical or sequential depending on data type
+    
+select Name
+from Country
+order by Name desc;
+    -- desc can be used to flip the order of the display
+    
+select Name, Continent
+from Country
+order by Continent, Name;
+    -- You can order by multiple features
+    -- The results will be ordered be the first listed feature, and then the second
+    
+select Name, Continent
+from Country
+order by Continent desc, Name asc;
+    -- The multiple order by features can be in oppisite order, if desired 
+    
