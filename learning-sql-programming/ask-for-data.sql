@@ -62,3 +62,49 @@ limit 5 offset 5;
     
 -- Organize Responses with ORDER BY
 
+select first_name, last_name
+from people;
+    -- A standard query will return the data in the order that is was input into the table, or by the order of the defined index
+    
+select first_name, last_name
+from people
+order by first_name;
+    -- Using the order by clause will allow you to select a field by which to order the display of data
+    -- In this case since we chose a text feature, the display will be alphabetical by order of the first name
+    
+select first_name, last_name
+from people
+order by first_name desc;
+    -- The default order of ordered data is by ascending, that is by smallest to largest, or alphabetical
+    -- If you desire the order to be the other way around you can select desc
+    
+select state_code, first_name, last_name
+from people
+order by state_code, last_name;
+    -- You may order by multiple features if you wish, the display will be sorted by the first feature listed first, and then by the second feature within and so on
+    
+-- Finding Information About the Data
+
+select  first_name, length(first_name)
+from people;
+    -- the LENGTH function will tell you how many characters long each data point is
+    
+select   distinct(first_name)
+from people;
+    -- the DISTINCT function will only show unique values, if a value is repeated in this field it is ignored 
+    
+select count(*)
+from people
+where state_code = 'CA';
+    -- The COUNT function will count how many observations there are total
+    -- Combined with a where clause as a filter you can use this to count how many observations are in a subsection of data
+    
+-- Retrieve Data from the Database
+
+select first_name, last_name, team, quiz_points, shirt_or_hat
+from people
+order by shirt_or_hat, team;
+    -- In this challenge we were tasked to display the names, favorite team, quiz score of each participant and to determine if they wanted a hat or a shirt as a prize
+    -- further we were tasked with organzing the data so that all those that wanted hats were grouped together and all those that wanted shirts were grouped together
+    -- even further in the shirt and hat groupings we were tasked to make sure all the teams were organized as well
+    
